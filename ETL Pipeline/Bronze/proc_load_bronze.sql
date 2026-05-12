@@ -2,18 +2,60 @@
 ===============================================================================
 Stored Procedure: Load Bronze Layer (Source -> Bronze)
 ===============================================================================
-Script Purpose:
-    This stored procedure loads data into the 'bronze' schema from external CSV files. 
-    It performs the following actions:
-    - Truncates the bronze tables before loading data.
-    - Uses the `BULK INSERT` command to load data from csv Files to bronze tables.
+
+Procedure Purpose:
+    This stored procedure loads raw source data into the Bronze layer
+    of the data warehouse from external CSV files.
+
+    The Bronze layer acts as the raw data ingestion layer and preserves
+    source data in its original structure.
+
+    The procedure performs a full refresh load by truncating existing
+    Bronze tables before reloading the latest source data using the
+    BULK INSERT operation.
+
+Loading Process:
+    The procedure performs the following steps for each dataset:
+        1. Truncates the target Bronze table
+        2. Loads raw data from external CSV files
+        3. Records and displays load duration
+        4. Handles and logs loading errors
+
+Source Datasets:
+    - asia_fuel_prices_detailed
+    - crude_oil_annual
+    - fuel_tax_comparison
+    - asia_subsidy_tracker
+    - countries_ref
+
+Usage:
+    - Performs full refresh loading into Bronze tables
+    - Loads raw datasets from local CSV files
+    - Serves as the initial ingestion step of the ETL/ELT pipeline
+    - Intended to be executed before Silver layer transformations
 
 Parameters:
-    None. 
-	  This stored procedure does not accept any parameters or return any values.
+    None.
+    This stored procedure does not accept input parameters
+    and does not return values.
 
 Usage Example:
     EXEC bronze.load_bronze;
+
+Notes:
+    - Existing data in Bronze tables will be removed before loading
+    - No transformation is applied in the Bronze layer
+    - Data cleansing, standardization and business transformations
+      occur in the Silver layer
+    - Country naming inconsistencies are standardized later using
+      ISO3 mapping reference tables
+    - UTF-8 encoding is used for selected datasets where required
+
+Error Handling:
+    - Uses TRY...CATCH blocks to capture loading failures
+    - Displays SQL error message, number, and state
+    - Helps support troubleshooting during ingestion processes
+
 ===============================================================================
 */
 
