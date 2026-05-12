@@ -1,10 +1,9 @@
 /*
 ===============================================================================
-Proc Load Script: Load Gold Dimension Tables
+Stored Procedure: Load Gold Dimension Tables
 ===============================================================================
 
 Script Purpose:
-   
     This script loads data into dimension tables in the Gold layer
     of the data warehouse.
 
