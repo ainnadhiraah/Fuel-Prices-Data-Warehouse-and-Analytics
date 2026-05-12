@@ -2,19 +2,45 @@
 ===============================================================================
 Stored Procedure: Load Silver Layer (Bronze -> Silver)
 ===============================================================================
+
 Script Purpose:
-    This stored procedure performs the ETL (Extract, Transform, Load) process to 
-    populate the 'silver' schema tables from the 'bronze' schema.
-	Actions Performed:
-		- Truncates Silver tables.
-		- Inserts transformed and cleansed data from Bronze into Silver tables.
-		
+    This stored procedure performs the ETL (Extract, Transform, Load) process
+    to populate all tables in the 'silver' schema from the 'bronze' schema.
+
+Process Overview:
+    1. TRUNCATE Silver tables (full refresh strategy)
+    2. EXTRACT data from Bronze layer
+    3. TRANSFORM data (cleaning, casting, standardization, derivations)
+    4. LOAD transformed data into Silver layer tables
+    5. LOG execution duration for each table and overall batch
+
+Key Transformations:
+    - Data trimming (removal of leading/trailing spaces)
+    - Type casting to appropriate data types (DECIMAL, BIT, etc.)
+    - Standardization of country and ISO mappings
+    - Derived metrics (e.g., price spreads, ratios, margins)
+    - Ranking and computed analytical fields where applicable
+
+Error Handling:
+    - Implemented using TRY...CATCH block
+    - Captures and prints error details if failure occurs during execution
+
 Parameters:
-    None. 
-	  This stored procedure does not accept any parameters or return any values.
+    None
+    (This procedure runs as a full batch ETL with no input parameters)
+
+Output:
+    - Populated and refreshed Silver layer tables
+    - Execution logs printed for monitoring performance
 
 Usage Example:
-    EXEC Silver.load_silver;
+    EXEC silver.load_silver;
+
+Notes:
+    - This is a full reload process (TRUNCATE + INSERT)
+    - Ensure Bronze layer data is validated before execution
+    - Designed for batch processing, not incremental loads
+
 ===============================================================================
 */
 
