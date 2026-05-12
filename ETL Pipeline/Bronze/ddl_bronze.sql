@@ -85,3 +85,23 @@ CREATE TABLE bronze.asia_subsidy_tracker (
 );
 GO
 
+IF OBJECT_ID('bronze.countries_ref', 'U') IS NOT NULL
+    DROP TABLE bronze.countries_ref;
+GO
+
+CREATE TABLE bronze.countries_ref(
+   "name"                     NVARCHAR(MAX),
+   "alpha-2"                  NVARCHAR(5),
+   "alpha-3"                  NVARCHAR(3),
+   "country-code"             INT,
+   "iso_3166-2"               NVARCHAR(50),
+   "region"                   NVARCHAR(50),
+   "sub-region"               NVARCHAR(50),
+   "intermediate-region"      NVARCHAR(50),
+   "region-code"              INT,
+   "sub-region-code"          INT,
+   "intermediate-region-code" INT
+);
+GO
+
+
