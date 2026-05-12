@@ -4,7 +4,6 @@ DDL Script: Create Bronze Tables
 ===============================================================================
 
 Script Purpose:
-
     This script creates raw ingestion tables in the Bronze layer
     of the data warehouse.
 
