@@ -24,7 +24,7 @@ Usage:
 
 Notes:
     - Source data originates from the Silver layer
-    - Intended for reporting, analytics, and BI workloads
+    - Intended for reporting, analytics and BI workloads
 
 ===============================================================================
 */
