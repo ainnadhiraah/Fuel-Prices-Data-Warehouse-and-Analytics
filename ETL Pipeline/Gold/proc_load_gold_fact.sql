@@ -1,23 +1,35 @@
 /*
 ===============================================================================
-DDL Script: Create Gold Fact tables as Views
+Proc Load Script: Create Gold Fact Tables as Views
 ===============================================================================
-Script Purpose:
-    This script creates views for the Gold layer in the data warehouse. 
-    The Gold layer represents the final dimension and fact tables (Star Schema)
 
-    Each view performs transformations and combines data from the Silver layer 
-    to produce a clean, enriched, and business-ready dataset.
+Script Purpose:
+    This script creates fact table views in the Gold layer of the
+    data warehouse.
+
+    The Gold layer represents the final analytical layer designed
+    using dimensional modeling principles (Star Schema).
+
+    Each fact view integrates, transforms and enriches standardized
+    data from the Silver layer to produce business-ready datasets
+    optimized for reporting, dashboarding and analytical workloads.
+
+    These fact views store measurable business metrics and are designed
+    to be joined with dimension tables for multidimensional analysis.
 
 Usage:
-    - These views can be queried directly for analytics and reporting.
+    - Creates analytical fact views in the Gold layer
+    - Supports reporting and BI dashboard consumption
+    - Provides centralized and standardized business metrics
+    - Intended for direct querying by analytics tools
+
+Notes:
+    - Source data originates from the Silver layer
+    - Fact views are designed to work with Gold dimension tables
+    - Optimized for trend analysis, aggregations, and KPI reporting
+
 ===============================================================================
 */
-
--- =============================================================================
--- Create Dimension: gold.fact_country_snapshot
--- =============================================================================
-
 
 IF OBJECT_ID('gold.fact_asia_fuel_prices_tax_snapshot', 'V') IS NOT NULL
     DROP VIEW gold.fact_asia_fuel_prices_tax_snapshot;
