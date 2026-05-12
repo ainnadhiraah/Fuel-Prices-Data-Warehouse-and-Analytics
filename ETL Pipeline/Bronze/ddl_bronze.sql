@@ -27,9 +27,6 @@ Usage:
 
 Notes:
     - No transformation is applied in the Bronze layer
-    - Data quality validation and standardization occur in the Silver layer
-    - Country-related datasets may contain inconsistent naming conventions
-      which are later standardized using ISO3 mappings
     - Tables are designed for raw data preservation and traceability
 
 ===============================================================================
