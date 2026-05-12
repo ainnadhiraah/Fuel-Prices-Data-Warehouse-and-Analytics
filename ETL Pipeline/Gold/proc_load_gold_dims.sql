@@ -1,6 +1,6 @@
 /*
 ===============================================================================
-DDL Script: Creating Dimension Tables in the Gold Layer
+Proc Load Script: Creating Dimension Tables in the Gold Layer
 ===============================================================================
 
 Script Purpose:
