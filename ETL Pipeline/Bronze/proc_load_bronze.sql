@@ -87,6 +87,22 @@ BEGIN
         SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' + CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
         PRINT '>> ---------------';
+
+		SET @start_time = GETDATE()
+		PRINT '>> Truncating Table: bronze.countries_ref';
+		TRUNCATE TABLE bronze.countries_ref;
+		PRINT '>> Inserting Data Into: countries_ref';
+		BULK INSERT bronze.countries_ref
+		FROM 'C:\DataProjects\FuelPricesDW\01_Datasets\countries_ref.csv'
+		WITH (
+		    FORMAT = 'CSV',
+		    FIRSTROW = 2,
+		    CODEPAGE = '65001',
+		    TABLOCK
+		);
+		SET @end_time = GETDATE();
+        PRINT '>> Load Duration: ' + CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
+        PRINT '>> ---------------';	 
         END TRY
 
         BEGIN CATCH
