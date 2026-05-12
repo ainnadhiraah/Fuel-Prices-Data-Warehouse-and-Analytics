@@ -2,10 +2,36 @@
 ===============================================================================
 DDL Script: Create Bronze Tables
 ===============================================================================
+
 Script Purpose:
-    This script creates tables in the 'bronze' schema, dropping existing tables 
-    if they already exist.
-	  Run this script to re-define the DDL structure of 'bronze' Tables
+
+    This script creates raw ingestion tables in the Bronze layer
+    of the data warehouse.
+
+    The Bronze layer serves as the initial landing zone for source
+    datasets and stores raw data ingested
+    from external sources such as CSV files and reference datasets.
+
+    Existing tables are dropped and recreated to ensure the DDL
+    structure remains consistent with the latest schema definition.
+
+    The tables created in this layer preserve the original source
+    structure and act as the foundational data source for downstream
+    transformation processes in the Silver and Gold layers.
+
+Usage:
+    - Creates Bronze layer tables
+    - Rebuilds table structures during development or schema updates
+    - Stores raw source data prior to cleansing and standardization
+    - Intended as the source layer for ETL/ELT transformation pipelines
+
+Notes:
+    - No transformation is applied in the Bronze layer
+    - Data quality validation and standardization occur in the Silver layer
+    - Country-related datasets may contain inconsistent naming conventions
+      which are later standardized using ISO3 mappings
+    - Tables are designed for raw data preservation and traceability
+
 ===============================================================================
 */
 
