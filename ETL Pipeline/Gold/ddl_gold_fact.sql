@@ -1,10 +1,11 @@
 /*
 ===============================================================================
-Proc Load Script: Create Gold Fact Tables as Views
+DDL Script: Create Gold Fact Views
 ===============================================================================
 
 Script Purpose:
-    This script creates fact table views in the Gold layer of the
+
+    This script creates fact views in the Gold layer of the
     data warehouse.
 
     The Gold layer represents the final analytical layer designed
@@ -26,7 +27,11 @@ Usage:
 Notes:
     - Source data originates from the Silver layer
     - Fact views are designed to work with Gold dimension tables
-    - Optimized for trend analysis, aggregations, and KPI reporting
+    - Country-related data is standardized using ISO3 mappings
+    - Some fact views use date_key from dim_date for temporal analysis
+    - Some fact views may use distinct year values directly depending
+      on the source data grain and business requirements
+    - Optimized for aggregations, trend analysis and KPI reporting
 
 ===============================================================================
 */
