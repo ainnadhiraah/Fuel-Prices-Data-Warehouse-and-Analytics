@@ -1,11 +1,35 @@
 /*
 ===============================================================================
-DDL Script: Create Silver Tables
+DDL Script: Create Silver Layer Tables
 ===============================================================================
+
 Script Purpose:
-    This script creates tables in the 'silver' schema, dropping existing tables 
-    if they already exist.
-	  Run this script to re-define the DDL structure of 'silver' Tables
+
+    This script defines the table structures in the Silver layer of the
+    data warehouse.
+
+    The Silver layer represents the cleaned, standardized and enriched
+    data layer, where raw Bronze data is transformed into analytics-ready
+    datasets.
+
+    This script performs a full schema reset by dropping existing tables
+    (if they exist) and recreating them with the latest structure.
+
+    The Silver layer is responsible for:
+        - Data cleansing and type standardization
+        - Derived calculations and enrichment
+        - Harmonization of country and reference data (ISO3 mapping)
+        - Preparation of data for the Gold (dimensional) layer
+
+Usage:
+    - Recreates Silver layer table structures
+    - Ensures consistent schema alignment across ETL runs
+    - Supports transformation logic for downstream Gold layer modeling
+
+Important Notes:
+    - Data in Silver is derived from Bronze layer ingestion
+    - Tables are designed for analytical transformation not direct reporting
+
 ===============================================================================
 */
 
