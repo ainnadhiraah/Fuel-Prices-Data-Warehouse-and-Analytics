@@ -25,7 +25,6 @@ Usage:
     - Intended to be executed before loading fact tables
 
 Notes:
-Notes:
     - Source data originates from the Silver layer
     - Country-related attributes are standardized using ISO3 mappings
     - dim_date uses generated date keys for temporal analysis
