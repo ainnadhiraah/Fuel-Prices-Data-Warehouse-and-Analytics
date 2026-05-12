@@ -21,9 +21,16 @@ Key Transformations:
     - Derived metrics (e.g., price spreads, ratios, margins)
     - Ranking and computed analytical fields where applicable
 
-Error Handling:
-    - Implemented using TRY...CATCH block
-    - Captures and prints error details if failure occurs during execution
+Data Standardization:
+    - Country names are standardized using mapping tables
+    - ISO3 codes are used as the primary integration key
+    - Cross-dataset consistency is enforced via reference tables
+
+Execution Behavior:
+    - Full refresh load (TRUNCATE + INSERT)
+    - Sequential processing of each Silver table
+    - Execution time logging per table and batch-level monitoring
+    - No incremental loading is performed
 
 Parameters:
     None
@@ -37,9 +44,19 @@ Usage Example:
     EXEC silver.load_silver;
 
 Notes:
-    - This is a full reload process (TRUNCATE + INSERT)
-    - Ensure Bronze layer data is validated before execution
-    - Designed for batch processing, not incremental loads
+    - This is a full reload process; existing Silver data will be overwritten
+    - Bronze layer must be successfully loaded before execution
+    - Designed for batch processing, not real-time or incremental pipelines
+    - Country inconsistencies are resolved using Silver mapping tables
+    - Derived metrics are calculated during transformation stage
+
+Error Handling:
+    - Implemented using TRY...CATCH blocks
+    - Captures and displays:
+        * Error message
+        * Error number
+        * Error state
+    - Helps identify and debug ETL failures during execution
 
 ===============================================================================
 */
